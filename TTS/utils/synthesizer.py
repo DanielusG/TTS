@@ -163,7 +163,7 @@ class Synthesizer(nn.Module):
         config = load_config(os.path.join(model_dir, "config.json"))
         self.tts_config = config
         self.tts_model = setup_tts_model(config)
-        self.tts_model.load_checkpoint(config, checkpoint_dir=model_dir, eval=True)
+        self.tts_model.load_checkpoint(config, checkpoint_dir=model_dir, eval=True, use_deepspeed=self.use_deepspeed)
         if use_cuda:
             self.tts_model.cuda()
 

@@ -24,6 +24,7 @@ class TTS(nn.Module):
         vocoder_config_path: str = None,
         progress_bar: bool = True,
         gpu=False,
+        use_deepspeed=False
     ):
         """🐸TTS python interface that allows to load and use the released models.
 
@@ -79,7 +80,7 @@ class TTS(nn.Module):
 
         if model_path:
             self.load_tts_model_by_path(
-                model_path, config_path, vocoder_path=vocoder_path, vocoder_config=vocoder_config_path, gpu=gpu
+                model_path, config_path, vocoder_path=vocoder_path, vocoder_config=vocoder_config_path, gpu=gpu, use_deepspeed=use_deepspeed
             )
 
     @property
@@ -188,7 +189,7 @@ class TTS(nn.Module):
         )
 
     def load_tts_model_by_path(
-        self, model_path: str, config_path: str, vocoder_path: str = None, vocoder_config: str = None, gpu: bool = False
+        self, model_path: str, config_path: str, vocoder_path: str = None, vocoder_config: str = None, gpu: bool = False, use_deepspeed: bool = False
     ):
         """Load a model from a path.
 
@@ -210,6 +211,7 @@ class TTS(nn.Module):
             encoder_checkpoint=None,
             encoder_config=None,
             use_cuda=gpu,
+            use_deepspeed=use_deepspeed
         )
 
     def _check_arguments(

@@ -67,6 +67,7 @@ class TTS(nn.Module):
         self.synthesizer = None
         self.voice_converter = None
         self.model_name = ""
+        self.use_deepspeed = use_deepspeed
         if gpu:
             warnings.warn("`gpu` will be deprecated. Please use `tts.to(device)` instead.")
 

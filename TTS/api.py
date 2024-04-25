@@ -186,6 +186,7 @@ class TTS(nn.Module):
             encoder_config=None,
             model_dir=model_dir,
             use_cuda=gpu,
+            use_deepspeed=self.use_deepspeed
         )
 
     def load_tts_model_by_path(
